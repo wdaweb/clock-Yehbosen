@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/google.css">
+    <style>
+        body {
+            background-color: black;
+            
+        }
+        .col {
+            font-family: 'Press Start 2P';
+            color: #fff;
+            font-size: 40px;
+            animation: col 1.5s;
+            animation-iteration-count: infinite;
+        }
+        .c12 {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            top:100px;
+            left: calc(50% - 38px);
+            font-family: 'Press Start 2P';
+        }
+        .c3 {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            top: calc(38%);
+            left: calc(60% - 15px);
+            font-family: 'Press Start 2P';
+        }
+        .c6 {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            top: calc(55%);
+            left: calc(50% - 15px);
+            font-family: 'Press Start 2P';
+        }
+        .c9 {
+            color: #fff;
+            font-size: 40px;
+            position: absolute;
+            top: calc(38%);
+            left: calc(40%);
+            font-family: 'Press Start 2P';
+        }
+        #clock {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            
+            position: relative;
+            margin:0px auto;
+        }
+
+        #second {
+            position: absolute;
+            width: 50%;
+            height: 6px;
+            top: calc(50% - 3px);
+            transform: rotate(90deg);
+            transform-origin: right center;
+            border-radius: 3px;
+            animation: second 3s;
+            animation-iteration-count: infinite;
+        }
+
+        #minute {
+            position: absolute;
+            width: 45%;
+            left: 5%;
+            height: 6px;
+            background: aqua;
+            top: calc(50% - 3px);
+            transform: rotate(90deg);
+            transform-origin: right center;
+            border-radius: 3px;
+            animation: minute 7s;
+            animation-iteration-count: infinite;
+        }
+
+        #hour {
+            position: absolute;
+            width: 25%;
+            left: 25%;
+            height: 6px;
+            background: pink;
+            top: calc(50% - 3px);
+            transform: rotate(90deg);
+            transform-origin: right center;
+            border-radius: 3px;
+            animation: hour 11s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes second {
+            from {
+                background-color: rgb(82, 152, 231);box-shadow: 0 0 9px #333;
+            }
+            50% {
+                background-color: burlywood;box-shadow: 0 0 9px #fff;
+            }
+            to {
+                background-color: rgb(82, 152, 231);box-shadow: 0 0 9px #333;
+            }
+        }
+        @keyframes minute {
+            from {
+                background-color: blueviolet;box-shadow: 0 0 9px #333;
+            }
+            50% {
+                background-color: rgb(142, 201, 115);box-shadow: 0 0 9px #fff;
+            }
+            to {
+                background-color: blueviolet;box-shadow: 0 0 9px #333;
+            }
+        }
+        @keyframes hour {
+            from {
+                background-color: rgb(99, 246, 54);box-shadow: 0 0 9px #333;
+            }
+            50% {
+                background-color: rgb(235, 232, 100);box-shadow: 0 0 9px #fff;
+            }
+            to {
+                background-color: rgb(99, 246, 54);box-shadow: 0 0 9px #333;
+            }
+        }
+        @keyframes col {
+            from {
+                text-shadow: 0 0 10px #fff,
+                     0 0 20px #fff,
+                     0 0 30px #fff,
+                     0 0 40px #00a67c,
+                     0 0 70px #00a67c,
+                     0 0 80px #00a67c,
+                     0 0 100px #00a67c,
+                     0 0 150px #00a67c;
+
+            }
+            to {
+                text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 15px #fff,
+                     0 0 20px #00a67c,
+                     0 0 35px #00a67c,
+                     0 0 40px #00a67c,
+                     0 0 50px #00a67c,
+
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="col"><p>TIME: <span id="time"></span></p></div>
+    <div id="bg">
+    <div><p class="c12">12</p></div>
+    <div><p class="c3">3</p></div>
+    <div><p class="c6">6</p></div>
+    <div><p class="c9">9</p></div>
+        <div id="clock">
+            
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
+        </div>
+    </div>
+    
+    <script>
+        let hour = document.getElementById("hour");
+        let minute = document.getElementById("minute");
+        let second = document.getElementById("second");
+        let time = document.getElementById("time");
+
+        let clock = () => {
+            let date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            hour.style.transform = `rotate( ${h*30+90}deg)`;
+            minute.style.transform = `rotate( ${m*6+90}deg)`;
+            second.style.transform = `rotate( ${s*6+90}deg)`;
+            
+            let y = date.getFullYear();
+            let mon = date.getMonth()+1;
+            let d = date.getDate();
+
+            time.innerText = y+"/"+mon+"/"+d+"  "+h+":"+m+":"+s+"";
+            
+        }
+
+        clock();
+        setInterval(clock, 1000);
+    </script>
+</body>
+</html>
